@@ -11,4 +11,4 @@ conteo = df['nombre'].value_counts()
 
 # idxmax() → devuelve el valor más frecuente
 # max() → cantidad
-print(conteo.idxmax(), conteo.max())
+print(conteo.idxmax(), conteo.max()) 
