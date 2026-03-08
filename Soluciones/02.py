@@ -1,15 +1,13 @@
-# cargar datos
 import pandas as pd
-import codecs 
-datos = pd.read_csv('data/personas.csv')
+import codecs
 
-texto_original = "MARIA"
+# cargar dataset
+df = pd.read_csv("data/personas.csv")
 
-# Cifrar (ROT13)
-texto_cifrado = codecs.encode(texto_original,'rot_13')
-print(f"Cifrado: {texto_cifrado}")
+# descifrar nombres
+df["nombre"] = df["nombre_cifrado"].apply(lambda x: codecs.decode(str(x), 'rot_13'))
 
-# Marlon = ZNEYBA
-condicion = datos['nombre_cifrado']=='Znevn'
-datos_nuevos = datos[condicion]
-print(datos_nuevos)
+# contar cuántas veces aparece Maria
+cantidad_maria = (df["nombre"].str.strip().str.title() == "Maria").sum()
+
+print("Cantidad de personas llamadas Maria:", cantidad_maria)

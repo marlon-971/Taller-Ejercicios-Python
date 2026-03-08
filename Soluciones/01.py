@@ -1,3 +1,10 @@
 import pandas as pd
-datos = pd.read_csv('data/personas.csv')
-print(datos.sample(10))
+
+df = pd.read_csv("data/personas.csv")
+
+ids_no_numericos = df["id"].astype(str).str.contains(r"\D")
+
+# contar filas
+cantidad = ids_no_numericos.sum()
+
+print("Filas con id no numérico:", cantidad)
